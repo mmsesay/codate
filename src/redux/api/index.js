@@ -1,6 +1,8 @@
 import axios from 'axios';
 
 const BASE_API = 'https://api.teleport.org/api';
+// const ENDPOINT_URBAN_AREA = 'https://api.teleport.org/api/urban_areas/slug:';
+// const ENDPOINT_MORE_DETAILS = 'https://api.teleport.org/api/urban_areas/slug:shanghai/details/';
 
 export const getAllCitiesFromApi = async () => {
   try {
@@ -28,20 +30,40 @@ export const getAllCitiesFromApi = async () => {
   }  
 };
 
+const getUrbanDetailsFromApi = async (endpoint) => {
+  try {
+    const response = await axios.get(`${endpoint}`);
+    const obj = {
+      continent: response.data.continent,
+      mayor: response.data.mayor || null,
+      href: endpoint,
+    };
+    
+    return { data: obj, error: null };
+  } catch (error) {
+    return { data: null, error: 'Error fetching data' };
+  }  
+};
+
 export const getCityDetailsFromApi = async (endpoint) => {
   try {
     const response = await axios.get(`${endpoint}`);
 
-    console.log(response);
+    // destructure the data
     const { 
       name, population, location, _links,
     } = response.data;
+
+    // destructure the sub-data
     const {
       'city:country': country,
       'city:timezone': timeZone,
       'city:urban_area': urbanArea,
     } = _links;
 
+    const { data } = await getUrbanDetailsFromApi(urbanArea.href).then((data) => data);
+
+    // reshape a new object that will be the data for the redux store
     const cityDetailsObject = {
       name,
       location: {
@@ -51,7 +73,7 @@ export const getCityDetailsFromApi = async (endpoint) => {
       population,
       country: country.name,
       timeZone: timeZone.name,
-      urbanAreaURL: urbanArea.href,
+      urbanAreaInfo: data,
     };
     
     return { data: cityDetailsObject, error: null };
