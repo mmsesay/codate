@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { Card } from './Card';
 
 export const CitiesList = () => {
   const state = useSelector((state) => state.codateReducer.cities);
@@ -10,7 +11,7 @@ export const CitiesList = () => {
       jsx = <p>{state.error}</p>;
     } else if (state.data) {
       jsx = state.data.map((city, index) => (
-        <p key={index}>{city.cityName}</p>
+        <Card key={index} data={city} />
       ));
     } else {
       jsx = <p>Loading...</p>;

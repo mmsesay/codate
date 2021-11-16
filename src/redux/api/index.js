@@ -15,8 +15,8 @@ const getAllCitiesFromApi = async () => {
       const { 'city:item': cityItem } = _links;
 
       const cityObject = {
-        cityLink: cityItem.href,
-        cityName: result.matching_full_name,
+        link: cityItem.href,
+        name: result.matching_full_name,
       };
 
       array.push(cityObject);
