@@ -22,9 +22,9 @@ const getAllCitiesFromApi = async () => {
       array.push(cityObject);
     });
     
-    return { data: array };
+    return { data: array, error: null };
   } catch (error) {
-    return { data: 'Error fetching data.' };
+    return { data: null, error: 'Error fetching data' };
   }  
 };
 
