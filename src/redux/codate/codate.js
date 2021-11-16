@@ -1,3 +1,4 @@
+const SET_CITIES = 'codate/SET_CITIES';
 const GET_CITIES = 'codate/GET_CITIES';
 
 // init state
@@ -6,19 +7,26 @@ const initialState = {
 };
 
 // Actions
-export const getCities = (payload) => ({
-  type: GET_CITIES,
+export const setCitiesAction = (payload) => ({
+  type: SET_CITIES,
   payload,
+});
+
+export const getCitiesAction = () => ({
+  type: GET_CITIES,
 });
 
 // reducer
 export const codateReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_CITIES:
+    case SET_CITIES:
       return {
         ...state,
         cities: action.payload,
       };
+
+    case GET_CITIES:
+      return state;
 
     default:
       return state;
