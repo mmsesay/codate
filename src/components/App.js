@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { CitiesList } from './CitiesList';
-import getAllCitiesFromApi from '../redux/api';
+import { getAllCitiesFromApi } from '../redux/api';
 import { setCitiesAction } from '../redux/codate/codate';
 
 const App = () => {

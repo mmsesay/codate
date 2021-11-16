@@ -1,4 +1,4 @@
-export const City = (prop) => {
+export const CityDetails = (prop) => {
   const { link, name } = prop.data;
   console.log(prop);
   return (

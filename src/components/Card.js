@@ -1,11 +1,19 @@
+// import { CityDetails } from "./CityDetails";
+import { getCityDetailsFromApi } from '../redux/api';
+
 export const Card = (prop) => {
   const { link, name } = prop.data;
 
-  const handleCityDetail = () => {
-    console.log(link, name);
+  const handleFetchingCityDetails = () => {
+    console.log(link);
+    getCityDetailsFromApi(link)
+      .then((response) => {
+        console.log(response);
+      });
+    // <CityDetails />
   };
 
   return (
-    <button onClick={() => handleCityDetail()}>{name}</button>
+    <button onClick={() => handleFetchingCityDetails()}>{name}</button>
   );
 };
