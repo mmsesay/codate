@@ -19,7 +19,7 @@ const App = () => {
   return (
     <Routes>
       <Route exact path="/" element={<CitiesList results={state} />} />
-      <Route exact path="/detail/:id" element={<CityDetails />} />
+      <Route exact path="/detail/:id" element={<CityDetails results={state} />} />
     </Routes>
   );
 };

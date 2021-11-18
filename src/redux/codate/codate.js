@@ -28,7 +28,9 @@ export const codateReducer = (state = initialState, action) => {
     
     case GET_CITY:
       return {
-        cities: [...state.cities.filter((city) => city.id === action.payload.id)],
+        cities: [
+          ...state.cities.filter((city) => city.id === action.payload.id),
+        ],
       };
 
     default:

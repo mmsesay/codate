@@ -1,22 +1,41 @@
-import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { getCityAction } from '../redux/codate/codate';
 
 export const CityDetails = (prop) => {
-  console.log(prop);
-  const city = prop;
+  const cityData = prop.results;
 
-  const dispatch = useDispatch();
   const { id } = useParams();
-  console.log(id, city);
 
-  if (id) { dispatch(getCityAction({ id })); }
+  const prepareDataAndDisplayDetail = () => {
+    let jsx;
+
+    const foundItem = cityData.filter((element) => {
+      if (element !== undefined) {
+        if (element.id === id) return element;
+      }
+      return null;
+    });
+
+    if (foundItem) {
+      foundItem.forEach((item) => {
+        jsx = <div>
+          <p>{item.name}</p>
+          <p>{item.country}</p>
+        </div>;
+      });
+    } else {
+      jsx = <p>No details available</p>;
+    }
+
+    return jsx;
+  };
 
   return (
-    <ul>
-      <Link to='/'>back</Link>
-      <li>data</li>
-    </ul>
-    // <button key={link}>{name}</button>
+    <div>
+        <Link to='/'>back</Link>
+      <ul>
+        <li>data</li>
+      </ul>
+      <div>{ prepareDataAndDisplayDetail() }</div>
+    </div>
   );
 };
