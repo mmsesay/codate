@@ -65,10 +65,10 @@ const getUrbanDetailsFromApi = async (endpoint) => {
         }
     
         case 'EDUCATION': {
-          const bestUnisersity = obj.data[16];
+          const bestUniversity = obj.data[16];
     
           education = {
-            bestUnisersity,
+            bestUniversity,
           };
           break;
         }

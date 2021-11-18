@@ -26,6 +26,7 @@ export const CitiesList = (prop) => {
         <p className="text-xl font-bold">Popular Citites</p>
         <p className="text-lg">{results.length > 0 && `${results.length} cities`}</p>
       </div>
+      {/* <TopSection data={cityBox} /> */}
       <div className="grid grid-cols-2 mt-4">
         { assertReduxStateAndReturnJSX() }
       </div>

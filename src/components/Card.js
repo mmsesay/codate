@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 export const Card = (prop) => {
-  const { id, name } = prop.data;
+  const { id, name, population } = prop.data;
 
   return (
     <Link to={`/detail/${id}`}>
@@ -9,9 +9,9 @@ export const Card = (prop) => {
         <span className="p-1 text-sm">
           <i className="far fa-arrow-alt-circle-right fa-lg text-white"></i>
         </span>
-        <div>
+        <div className="text-right">
           <p>{name}</p>
-          <p className="text-sm">{2424242424}</p>
+          <p className="text-sm">{population.toLocaleString()}</p>
         </div>
       </div>
     </Link>
