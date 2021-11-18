@@ -7,6 +7,10 @@ const getUrbanDetailsFromApi = async (endpoint) => {
   try {
     const responseOne = await axios.get(`${endpoint}`);
     const responseTwo = await axios.get(`${endpoint}details/`);
+    const responseThree = await axios.get(`${endpoint}images/`);
+
+    let cityImageURL;
+    responseThree.data.photos.forEach((object) => { cityImageURL = object.image.mobile; });
 
     const moreDetails = responseTwo.data.categories;
     let business,
@@ -147,6 +151,7 @@ const getUrbanDetailsFromApi = async (endpoint) => {
       jobMarket,
       network,
       safety,
+      cityImageURL,
     };
 
     return { data: newObj, error: null };

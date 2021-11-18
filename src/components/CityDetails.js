@@ -1,5 +1,4 @@
 import { Link, useParams } from 'react-router-dom';
-// import TopSection from './TopSection';
 
 export const CityDetails = (prop) => {
   const cityData = prop.results;

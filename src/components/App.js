@@ -6,7 +6,6 @@ import { CityDetails } from './CityDetails';
 import { initApi } from '../redux/api';
 import { setCitiesAction } from '../redux/codate/codate';
 import Head from './Head';
-// import './main.css';
 
 const App = () => {
   const state = useSelector((state) => state.codateReducer.cities);
@@ -19,7 +18,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="bg-pink-500 h-full">
+    <div className="bg-pink-500 base h-full">
       <Head />
       <Routes>
         <Route exact path="/" element={<CitiesList results={state} />} />
