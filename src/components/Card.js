@@ -1,22 +1,21 @@
 // import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CityDetails } from './CityDetails';
-import { getCityDetailsFromApi } from '../redux/api';
+// import { CityDetails } from './CityDetails';
+// import { getCityDetailsFromApi } from '../redux/api';
 
 export const Card = (prop) => {
-  const { link, name } = prop.data;
-  // const [displayName, setDisplayName] = useState('');
+  const { id, name, country } = prop.data;
 
-  const handleFetchingCityDetails = () => {
-    getCityDetailsFromApi(link)
-      .then((response) => {
-        <CityDetails data={response.data} />;
-        // setDisplayName(`${response.data.name}, ${response.data.country}`);
-        console.log(response);
-      });
-  };
+  console.log(prop.data);
+
+  const handleFetchingCityDetails = () => {};
 
   return (
-    <Link to={`/detail/${name}`} onClick={() => handleFetchingCityDetails()}>{name}</Link>
+    <>
+      <Link to={`/detail/${id}`} onClick={() => handleFetchingCityDetails()}>
+        {name}-{country}
+      </Link>
+      <br />
+    </>
   );
 };

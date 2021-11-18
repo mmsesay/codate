@@ -1,32 +1,7 @@
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 
 const BASE_API = 'https://api.teleport.org/api';
-
-export const getAllCitiesFromApi = async () => {
-  try {
-    const array = [];
-    const response = await axios.get(`${BASE_API}/cities/`);
-
-    const { _embedded } = response.data;
-    const { 'city:search-results': searchResult } = _embedded;
-
-    searchResult.forEach((result) => {
-      const { _links } = result;
-      const { 'city:item': cityItem } = _links;
-
-      const cityObject = {
-        link: cityItem.href,
-        name: result.matching_full_name,
-      };
-
-      array.push(cityObject);
-    });
-    
-    return { data: array, error: null };
-  } catch (error) {
-    return { data: null, error: 'Error fetching data' };
-  }  
-};
 
 const getUrbanDetailsFromApi = async (endpoint) => {
   try {
@@ -43,7 +18,7 @@ const getUrbanDetailsFromApi = async (endpoint) => {
       housing,
       jobMarket,
       network,
-      safety = {};
+      safety;
 
     moreDetails.forEach((obj) => {
       switch (obj.id) {
@@ -180,9 +155,11 @@ const getUrbanDetailsFromApi = async (endpoint) => {
   }  
 };
 
-export const getCityDetailsFromApi = async (endpoint) => {
+export const getCitiesDetailsFromApi = async (endpoint) => {
   try {
     const response = await axios.get(`${endpoint}`);
+
+    let cityDetailsObject;
 
     // destructure the data
     const { 
@@ -196,23 +173,62 @@ export const getCityDetailsFromApi = async (endpoint) => {
       'city:urban_area': urbanArea,
     } = _links;
 
-    const { data } = await getUrbanDetailsFromApi(urbanArea.href).then((data) => data);
+    if (urbanArea) {
+      const { data } = await getUrbanDetailsFromApi(urbanArea.href);
 
-    // reshape a new object that will be the data for the redux store
-    const cityDetailsObject = {
-      name,
-      location: {
-        lat: location.latlon.latitude,
-        long: location.latlon.longitude,
-      },
-      population,
-      country: country.name,
-      timeZone: timeZone.name,
-      moreInfo: data,
-    };
-    
+      if (data) {
+        // reshape a new object that will be the data for the redux store
+        cityDetailsObject = {
+          id: uuidv4(),
+          name,
+          location: {
+            lat: location.latlon.latitude,
+            long: location.latlon.longitude,
+          },
+          population,
+          country: country.name,
+          timeZone: timeZone.name,
+          moreInfo: data,
+        };
+      }
+    }
+
     return { data: cityDetailsObject, error: null };
   } catch (error) {
     return { data: null, error: 'Error fetching data' };
+  }
+};
+
+export const getAllCitiesLinksFromApi = async () => {
+  try {
+    const array = [];
+    const response = await axios.get(`${BASE_API}/cities/`);
+
+    const { _embedded } = response.data;
+    const { 'city:search-results': searchResult } = _embedded;
+
+    searchResult.forEach(async (result) => {
+      const { _links } = result;
+      const { 'city:item': cityItem } = _links;
+      array.push(cityItem.href);
+    });
+
+    return { citiesLink: array, error: null };
+  } catch (error) {
+    return { cities: null, error: 'Error fetching data' };
   }  
+};
+
+export const initApi = async () => {
+  const { citiesLink } = await getAllCitiesLinksFromApi();
+
+  const response = citiesLink.map(async (href) => {
+    let outgoingData;
+    const { data } = await getCitiesDetailsFromApi(href);
+
+    if (data !== undefined) outgoingData = data;
+    return outgoingData;
+  });
+
+  return Promise.all(response);
 };

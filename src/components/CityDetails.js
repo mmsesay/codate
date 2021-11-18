@@ -1,10 +1,16 @@
+import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import { getCityAction } from '../redux/codate/codate';
 
-export const CityDetails = (props) => {
-  // const { link, name } = prop.data;
-  const { name } = useParams();
-  console.log(props);
-  console.log(name);
+export const CityDetails = (prop) => {
+  console.log(prop);
+  const city = prop;
+
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  console.log(id, city);
+
+  if (id) { dispatch(getCityAction({ id })); }
 
   return (
     <ul>

@@ -1,25 +1,25 @@
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CitiesList } from './CitiesList';
 import { CityDetails } from './CityDetails';
-import { getAllCitiesFromApi } from '../redux/api';
+import { initApi } from '../redux/api';
 import { setCitiesAction } from '../redux/codate/codate';
 
 const App = () => {
+  const state = useSelector((state) => state.codateReducer.cities);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    getAllCitiesFromApi()
-      .then((data) => {
-        dispatch(setCitiesAction(data));
-      });
+  useEffect(async () => {
+    initApi().then((object) => {
+      dispatch(setCitiesAction(object));
+    });
   }, []);
 
-  return (  
+  return (
     <Routes>
-      <Route exact path="/" element={<CitiesList />} />
-      <Route exact path="/detail/:name" element={<CityDetails />} />
+      <Route exact path="/" element={<CitiesList results={state} />} />
+      <Route exact path="/detail/:id" element={<CityDetails />} />
     </Routes>
   );
 };
