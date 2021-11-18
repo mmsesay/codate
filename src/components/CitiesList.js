@@ -24,9 +24,11 @@ export const CitiesList = (prop) => {
     <div className="base">
       <div className="flex flex-col h-40 bg-blue-500 items-end justify-center px-10 text-white">
         <p className="text-xl font-bold">Popular Citites</p>
-        <p className="text-lg">25 cities</p>
+        <p className="text-lg">{results.length > 0 && `${results.length} cities`}</p>
       </div>
-      { assertReduxStateAndReturnJSX() }
+      <div className="grid grid-cols-2 mt-4">
+        { assertReduxStateAndReturnJSX() }
+      </div>
     </div>
   );
 };
