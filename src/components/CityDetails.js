@@ -5,7 +5,7 @@ export const CityDetails = (prop) => {
 
   const { id } = useParams();
 
-  const prepareDataAndDisplayDetail = () => {
+  const assertItemExistsAndReturnJSX = () => {
     let jsx;
 
     const foundItem = cityData.filter((element) => {
@@ -35,7 +35,7 @@ export const CityDetails = (prop) => {
       <ul>
         <li>data</li>
       </ul>
-      <div>{ prepareDataAndDisplayDetail() }</div>
+      <div>{ assertItemExistsAndReturnJSX() }</div>
     </div>
   );
 };
