@@ -5,6 +5,9 @@ const mockData = [
     population: '7,000,000',
     country: 'Sierra Leone',
     timeZone: 'Africa',
+    moreInfo: {
+      cityImage: 'test.png',
+    },
   },
   {
     id: 2,
@@ -12,6 +15,9 @@ const mockData = [
     population: '8,000,000',
     country: 'Ghana',
     timeZone: 'Africa',
+    moreInfo: {
+      cityImage: 'test.png',
+    },
   },
   {
     id: 3,
@@ -19,6 +25,9 @@ const mockData = [
     population: '9,000,000',
     country: 'Nigeria',
     timeZone: 'Africa',
+    moreInfo: {
+      cityImage: 'test.png',
+    },
   },
 ];
 
