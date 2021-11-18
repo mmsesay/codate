@@ -167,8 +167,8 @@ const getCitiesDetailsFromApi = async (endpoint) => {
     let cityDetailsObject;
 
     // destructure the data
-    const { 
-      name, population, location, _links,
+    const {
+      name, population, _links,
     } = response.data;
 
     // destructure the sub-data
@@ -186,10 +186,6 @@ const getCitiesDetailsFromApi = async (endpoint) => {
         cityDetailsObject = {
           id: uuidv4(),
           name,
-          location: {
-            lat: location.latlon.latitude,
-            long: location.latlon.longitude,
-          },
           population,
           country: country.name,
           timeZone: timeZone.name,
@@ -235,21 +231,12 @@ const getAllCitiesLinksFromApi = async (searchText) => {
 export const initApi = async (searchText) => {
   const { citiesLink } = await getAllCitiesLinksFromApi(searchText);
 
-  // console.log(citiesLink);
   const response = citiesLink.map(async (href) => {
-    // console.log(href);
     let outgoingData;
     const { data } = await getCitiesDetailsFromApi(href);
-    // getCitiesDetailsFromApi(href)
-    //   .then((resp) => {
-    //     console.log(resp);
-    //     outgoingData = resp;
-    //   });
     if (data !== undefined) outgoingData = data;
     return outgoingData;
   });
-
-  // console.log(response);
 
   return Promise.all(response);
 };

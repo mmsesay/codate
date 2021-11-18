@@ -7,7 +7,7 @@ export const CityDetails = (prop) => {
   const { id } = useParams();
 
   const assertItemExist = () => {
-    const foundItem = cityData.filter((element) => {
+    const foundItem = cityData?.filter((element) => {
       if (element !== undefined) {
         if (element.id === id) return element;
       }
