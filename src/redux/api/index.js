@@ -160,7 +160,7 @@ const getUrbanDetailsFromApi = async (endpoint) => {
   }  
 };
 
-export const getCitiesDetailsFromApi = async (endpoint) => {
+const getCitiesDetailsFromApi = async (endpoint) => {
   try {
     const response = await axios.get(`${endpoint}`);
 
@@ -204,10 +204,18 @@ export const getCitiesDetailsFromApi = async (endpoint) => {
   }
 };
 
-export const getAllCitiesLinksFromApi = async () => {
+const getAllCitiesLinksFromApi = async (searchText) => {
   try {
     const array = [];
-    const response = await axios.get(`${BASE_API}/cities/`);
+    let response;
+
+    if (searchText) {
+      response = await axios.get(`${BASE_API}/cities/?search=${searchText}`);
+      console.log(response);
+    } else {
+      response = await axios.get(`${BASE_API}/cities/`);
+    }
+    // https://api.teleport.org/api/cities/?search=Johannesburg
 
     const { _embedded } = response.data;
     const { 'city:search-results': searchResult } = _embedded;
@@ -224,16 +232,24 @@ export const getAllCitiesLinksFromApi = async () => {
   }  
 };
 
-export const initApi = async () => {
-  const { citiesLink } = await getAllCitiesLinksFromApi();
+export const initApi = async (searchText) => {
+  const { citiesLink } = await getAllCitiesLinksFromApi(searchText);
 
+  // console.log(citiesLink);
   const response = citiesLink.map(async (href) => {
+    // console.log(href);
     let outgoingData;
     const { data } = await getCitiesDetailsFromApi(href);
-
+    // getCitiesDetailsFromApi(href)
+    //   .then((resp) => {
+    //     console.log(resp);
+    //     outgoingData = resp;
+    //   });
     if (data !== undefined) outgoingData = data;
     return outgoingData;
   });
+
+  // console.log(response);
 
   return Promise.all(response);
 };

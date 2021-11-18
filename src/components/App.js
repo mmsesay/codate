@@ -18,7 +18,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="bg-pink-500 base h-full">
+    <div className="base h-full">
       <Head />
       <Routes>
         <Route exact path="/" element={<CitiesList results={state} />} />
