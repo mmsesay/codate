@@ -18,6 +18,10 @@ export const CitiesList = (prop) => {
     return jsx;
   };
 
+  const handleSearch = (searchText) => {
+    console.log(searchText);
+  };
+
   useEffect(() => {});
 
   return (
@@ -25,6 +29,14 @@ export const CitiesList = (prop) => {
       <div className="flex flex-col h-40 bg-blue-500 items-end justify-center px-10 text-white">
         <p className="text-xl font-bold">Popular Citites</p>
         <p className="text-lg">{results.length > 0 && `${results.length} cities`}</p>
+      </div>
+      <div className="w-full">
+        <input 
+          type="text" 
+          name="search"
+          placeholder="Search for a city"
+          onChange={(e) => handleSearch(e.target.value)}
+          className="focus:outline-none px-5 w-full h-12" />
       </div>
       <div className="grid grid-cols-2 mt-4">
         { assertReduxStateAndReturnJSX() }
