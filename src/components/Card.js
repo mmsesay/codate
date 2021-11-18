@@ -1,19 +1,14 @@
-// import { CityDetails } from "./CityDetails";
-import { getCityDetailsFromApi } from '../redux/api';
+import { Link } from 'react-router-dom';
 
 export const Card = (prop) => {
-  const { link, name } = prop.data;
-
-  const handleFetchingCityDetails = () => {
-    console.log(link);
-    getCityDetailsFromApi(link)
-      .then((response) => {
-        console.log(response);
-      });
-    // <CityDetails />
-  };
+  const { id, name, country } = prop.data;
 
   return (
-    <button onClick={() => handleFetchingCityDetails()}>{name}</button>
+    <>
+      <Link to={`/detail/${id}`}>
+        {name}-{country}
+      </Link>
+      <br />
+    </>
   );
 };

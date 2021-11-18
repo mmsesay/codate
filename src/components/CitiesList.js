@@ -1,17 +1,15 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { Card } from './Card';
 
-export const CitiesList = () => {
-  const state = useSelector((state) => state.codateReducer.cities);
+export const CitiesList = (prop) => {
+  const { results } = prop;
 
   const assertReduxStateAndReturnJSX = () => {
     let jsx;
 
-    if (state.error) {
-      jsx = <p>{state.error}</p>;
-    } else if (state.data) {
-      jsx = state.data.map((city, index) => (
-        <Card key={index} data={city} />
+    if (results) {
+      jsx = results.map((city) => (
+        city !== undefined && <Card key={city.id} data={city} />
       ));
     } else {
       jsx = <p>Loading...</p>;
@@ -19,6 +17,8 @@ export const CitiesList = () => {
 
     return jsx;
   };
+
+  useEffect(() => {});
 
   return (
     <div>

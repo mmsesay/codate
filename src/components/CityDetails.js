@@ -1,7 +1,41 @@
+import { Link, useParams } from 'react-router-dom';
+
 export const CityDetails = (prop) => {
-  const { link, name } = prop.data;
-  console.log(prop);
+  const cityData = prop.results;
+
+  const { id } = useParams();
+
+  const prepareDataAndDisplayDetail = () => {
+    let jsx;
+
+    const foundItem = cityData.filter((element) => {
+      if (element !== undefined) {
+        if (element.id === id) return element;
+      }
+      return null;
+    });
+
+    if (foundItem) {
+      foundItem.forEach((item) => {
+        jsx = <div>
+          <p>{item.name}</p>
+          <p>{item.country}</p>
+        </div>;
+      });
+    } else {
+      jsx = <p>No details available</p>;
+    }
+
+    return jsx;
+  };
+
   return (
-    <button key={link}>{name}</button>
+    <div>
+        <Link to='/'>back</Link>
+      <ul>
+        <li>data</li>
+      </ul>
+      <div>{ prepareDataAndDisplayDetail() }</div>
+    </div>
   );
 };
