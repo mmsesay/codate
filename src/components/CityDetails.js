@@ -5,15 +5,21 @@ export const CityDetails = (prop) => {
 
   const { id } = useParams();
 
-  const assertItemExistsAndReturnJSX = () => {
-    let jsx;
-
+  const assertItemExist = () => {
     const foundItem = cityData.filter((element) => {
       if (element !== undefined) {
         if (element.id === id) return element;
       }
       return null;
     });
+
+    return foundItem;
+  };
+
+  const renderfoundItemJSX = () => {
+    let jsx;
+
+    const foundItem = assertItemExist();
 
     if (foundItem) {
       foundItem.forEach((item) => {
@@ -35,7 +41,7 @@ export const CityDetails = (prop) => {
       <ul>
         <li>data</li>
       </ul>
-      <div>{ assertItemExistsAndReturnJSX() }</div>
+      <div>{ renderfoundItemJSX() }</div>
     </div>
   );
 };

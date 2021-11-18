@@ -21,7 +21,7 @@ export const CitiesList = (prop) => {
   useEffect(() => {});
 
   return (
-    <div>
+    <div className="base bg-red-200">
       { assertReduxStateAndReturnJSX() }
     </div>
   );
