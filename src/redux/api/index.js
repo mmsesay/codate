@@ -207,11 +207,9 @@ const getAllCitiesLinksFromApi = async (searchText) => {
 
     if (searchText) {
       response = await axios.get(`${BASE_API}/cities/?search=${searchText}`);
-      console.log(response);
     } else {
       response = await axios.get(`${BASE_API}/cities/`);
     }
-    // https://api.teleport.org/api/cities/?search=Johannesburg
 
     const { _embedded } = response.data;
     const { 'city:search-results': searchResult } = _embedded;
