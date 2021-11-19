@@ -14,7 +14,7 @@ export const CitiesList = (prop) => {
 
     if (results.length > 0) {
       jsx = results.map((city) => (
-        city !== undefined && <div data-testid="card" className="card"><Card key={city.id} data={city} /></div>
+        city !== undefined && <div data-testid="card" className="card md:px-5"><Card key={city.id} data={city} /></div>
       ));
     } else {
       jsx = <p className="text-center py-10">Loading...</p>;
@@ -29,16 +29,15 @@ export const CitiesList = (prop) => {
 
   useEffect(() => {
     initApi(searchText).then((object) => {
-      // console.log(object);
       dispatch(setCitiesAction(object));
     });
   }, [searchText]);
 
   return (
     <>
-      <div className="flex flex-col h-40 items-end justify-center px-10 text-white base">
-        <h1 data-testid="card" className="text-xl font-bold">Popular Citites</h1>
-        <p className="text-lg">{results.length > 0 && `${results.length} cities`}</p>
+      <div className="flex flex-col h-40 md:h-64 items-end justify-center px-10 text-white base">
+        <h1 data-testid="card" className="text-xl md:text-5xl font-bold">Popular Citites</h1>
+        <p className="text-lg md:text-2xl">{results.length > 0 && `${results.length} cities`}</p>
       </div>
       <div className="w-full">
         <input 
@@ -46,9 +45,9 @@ export const CitiesList = (prop) => {
           name="search"
           placeholder="Search for a city"
           onChange={(e) => handleSearch(e)}
-          className="focus:outline-none px-5 w-full h-12 dark-primary" />
+          className="focus:outline-none px-5 w-full h-12 md:h-20 md:px-10 md:text-xl dark-primary" />
       </div>
-      <div className="grid grid-cols-2 darker-primary">
+      <div className="grid grid-cols-2 md:grid-cols-3 darker-primary">
         { assertReduxStateAndReturnJSX() || 'No data found'}
       </div>
     </>

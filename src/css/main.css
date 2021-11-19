@@ -34,3 +34,7 @@ ul > li:nth-child(even) {
 .darker-primary {
   background-color: var(--dark-purple);
 }
+
+input::placeholder {
+  color: white !important;
+}
