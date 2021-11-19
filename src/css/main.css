@@ -11,10 +11,6 @@
   background-color: var(--primary-color);
 }
 
-.card:nth-child(2n + 1) {
-  background-color: var(--primary-color);
-}
-
 .topbar-color {
   background-color: #ec4c8b;
 }
