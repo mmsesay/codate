@@ -25,7 +25,7 @@ const CityDetails = (prop) => {
 
     if (foundItem) {
       foundItem.forEach((item) => {
-        jsx = <div>
+        jsx = <div data-testid="city-details-container">
             <div className="flex items-center justify-between h-40 md:h-64">
               <img src={worldMap} alt="world map" className="w-40 md:w-96 h-32 md:ml-32 md:h-64 object-contain" />
               <div className="flex flex-col items-end justify-center px-5 md:px-32 text-white">
@@ -153,7 +153,7 @@ const CityDetails = (prop) => {
   }, []);
 
   return (
-    <div>
+    <div data-testid="details-parent">
       <Link to='/' className="flex items-center justify-between p-5 md:px-32 dark-primary text-gray-200">
         <i className="fas fa-chevron-left fa-lg text-gray-200"></i>
         <p className="mx-16 font-lato font-bold text-sm md:text-lg">town/city views</p>

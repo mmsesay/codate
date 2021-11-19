@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing single city detail should match with snapshot 1`] = `
+<div
+  data-testid="details-parent"
+>
+  <a
+    className="flex items-center justify-between p-5 md:px-32 dark-primary text-gray-200"
+    href="/"
+    onClick={[Function]}
+  >
+    <i
+      className="fas fa-chevron-left fa-lg text-gray-200"
+    />
+    <p
+      className="mx-16 font-lato font-bold text-sm md:text-lg"
+    >
+      town/city views
+    </p>
+    <div>
+      <i
+        className="fas fa-microphone fa-lg text-gray-200 mr-5"
+      />
+      <i
+        className="fas fa-cog fa-lg text-gray-200"
+      />
+    </div>
+  </a>
+  <div>
+    <p>
+      No details available
+    </p>
+  </div>
+</div>
+`;

@@ -1,4 +1,8 @@
-import { getCurrentState } from '../utils/mockedFunction';
+import { BrowserRouter as Router } from 'react-router-dom';
+import renderer from 'react-test-renderer';
+import '@testing-library/jest-dom';
+import { getCurrentState, mockData } from '../utils/mockedFunction';
+import CityDetails from '../components/CityDetails';
 
 describe('Testing single city detail', () => {
   test('Single city found', () => {
@@ -10,5 +14,14 @@ describe('Testing single city detail', () => {
         expect(object.name).toEqual('Freetown');
       }
     });
+  });
+
+  test('should match with snapshot', () => {
+    const tree = renderer
+      .create(
+        <Router><CityDetails data={mockData} /></Router>,
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
   });
 });
