@@ -11,7 +11,7 @@
   background-color: var(--primary-color);
 }
 
-.card:nth-child(-n+1) {
+.card:nth-child(2n + 1) {
   background-color: var(--primary-color);
 }
 
@@ -37,4 +37,10 @@ ul > li:nth-child(even) {
 
 input::placeholder {
   color: white !important;
+}
+
+@media (min-width: 768px) {
+  .card:nth-child(2n+1) {
+    background-color: var(--primary-color);
+  }
 }

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import worldMap from '../assets/worldmap.png';
 
 export const CityDetails = (prop) => {
   const cityData = prop.results;
@@ -25,10 +26,13 @@ export const CityDetails = (prop) => {
     if (foundItem) {
       foundItem.forEach((item) => {
         jsx = <div>
-            <div className="flex flex-col h-40 md:h-64 items-end justify-center px-32 text-white">
-              <p className="text-xl md:text-5xl font-bold">{item.name.toUpperCase()}</p>
-              <p className="text-lg md:text-2xl">{item.country.toUpperCase()}</p>
-              <p className="text-sm md:text-lg">{item.population.toLocaleString()} Population</p>
+            <div className="flex items-center justify-between h-40 md:h-64">
+              <img src={worldMap} alt="world map" className="w-40 md:w-96 h-32 md:ml-32 md:h-64 object-contain" />
+              <div className="flex flex-col items-end justify-center px-5 md:px-32 text-white">
+                <p className="text-xl md:text-5xl font-bold">{item.name.toUpperCase()}</p>
+                <p className="text-lg md:text-2xl">{item.country.toUpperCase()}</p>
+                <p className="text-sm md:text-lg">{item.population.toLocaleString()} Population</p>
+              </div>
             </div>
             <div className="text-sm  md:text-lg px-5 md:px-40 text-white dark-primary py-2">CITY/TOWN BREAKDOWN</div>
             <ul className="details text-gray-200">

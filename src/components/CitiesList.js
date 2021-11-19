@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Card } from './Card';
 import { initApi } from '../redux/api';
 import { setCitiesAction } from '../redux/codate/codate';
+import worldMap from '../assets/worldmap.png';
 
 export const CitiesList = (prop) => {
   const { results } = prop;
@@ -35,9 +36,12 @@ export const CitiesList = (prop) => {
 
   return (
     <>
-      <div className="flex flex-col h-40 md:h-64 items-end justify-center px-10 text-white base">
-        <h1 data-testid="card" className="text-xl md:text-5xl font-bold">Popular Citites</h1>
-        <p className="text-lg md:text-2xl">{results.length > 0 && `${results.length} cities`}</p>
+      <div className="flex h-40 md:h-72 items-center justify-between px-4 md:px-20 text-white base">
+        <img src={worldMap} className="w-1/2 md:w-96 h-32 md:h-64 -ml-3 object-contain" alt="world-map" />
+        <div className="w-1/2 flex flex-col items-end justify-end ">
+          <h1 data-testid="card" className="text-xl md:text-5xl font-bold">Popular Citites</h1>
+          <p className="text-lg md:text-2xl">{results.length > 0 && `${results.length} cities`}</p>
+        </div>
       </div>
       <div className="w-full">
         <input 
