@@ -231,12 +231,12 @@ const getAllCitiesLinksFromApi = async (searchText) => {
 export const initApi = async (searchText) => {
   const { citiesLink } = await getAllCitiesLinksFromApi(searchText);
 
-  const response = citiesLink.map(async (href) => {
+  const response = citiesLink?.map(async (href) => {
     let outgoingData;
     const { data } = await getCitiesDetailsFromApi(href);
     if (data !== undefined) outgoingData = data;
     return outgoingData;
   });
 
-  return Promise.all(response);
+  return Promise?.all(response);
 };
