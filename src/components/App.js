@@ -5,6 +5,7 @@ import { CitiesList } from './CitiesList';
 import { CityDetails } from './CityDetails';
 import { initApi } from '../redux/api';
 import { setCitiesAction } from '../redux/codate/codate';
+import Head from './Head';
 
 const App = () => {
   const state = useSelector((state) => state.codateReducer.cities);
@@ -17,10 +18,13 @@ const App = () => {
   }, []);
 
   return (
-    <Routes>
-      <Route exact path="/" element={<CitiesList results={state} />} />
-      <Route exact path="/detail/:id" element={<CityDetails results={state} />} />
-    </Routes>
+    <div className="base h-full">
+      <Head />
+      <Routes>
+        <Route exact path="/" element={<CitiesList results={state} />} />
+        <Route exact path="/detail/:id" element={<CityDetails results={state} />} />
+      </Routes>
+    </div>
   );
 };
 

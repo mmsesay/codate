@@ -1,0 +1,42 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;700&display=swap');
+
+:root {
+  --primary-color: #e84987;
+  --primary-card-color: #cf4278;
+  --dark-purple: #b13968;
+}
+
+.base {
+  background-color: var(--primary-color);
+}
+
+.topbar-color {
+  background-color: #ec4c8b;
+}
+
+.font-lato {
+  font-family: 'Lato', sans-serif;
+}
+
+ul > li:nth-child(even) {
+  background-color: var(--dark-purple);
+}
+
+.dark-primary {
+  background-color: var(--primary-card-color);
+}
+
+.darker-primary {
+  background-color: var(--dark-purple);
+}
+
+input::placeholder {
+  color: white !important;
+}
+
+@media (min-width: 768px) {
+  .card:nth-child(2n+1) {
+    background-color: var(--primary-color);
+  }
+}

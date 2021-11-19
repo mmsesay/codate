@@ -7,6 +7,10 @@ const getUrbanDetailsFromApi = async (endpoint) => {
   try {
     const responseOne = await axios.get(`${endpoint}`);
     const responseTwo = await axios.get(`${endpoint}details/`);
+    const responseThree = await axios.get(`${endpoint}images/`);
+
+    let cityImageURL;
+    responseThree.data.photos.forEach((object) => { cityImageURL = object.image.mobile; });
 
     const moreDetails = responseTwo.data.categories;
     let business,
@@ -65,10 +69,10 @@ const getUrbanDetailsFromApi = async (endpoint) => {
         }
     
         case 'EDUCATION': {
-          const bestUnisersity = obj.data[16];
+          const bestUniversity = obj.data[16];
     
           education = {
-            bestUnisersity,
+            bestUniversity,
           };
           break;
         }
@@ -147,6 +151,7 @@ const getUrbanDetailsFromApi = async (endpoint) => {
       jobMarket,
       network,
       safety,
+      cityImageURL,
     };
 
     return { data: newObj, error: null };
@@ -155,15 +160,15 @@ const getUrbanDetailsFromApi = async (endpoint) => {
   }  
 };
 
-export const getCitiesDetailsFromApi = async (endpoint) => {
+const getCitiesDetailsFromApi = async (endpoint) => {
   try {
     const response = await axios.get(`${endpoint}`);
 
     let cityDetailsObject;
 
     // destructure the data
-    const { 
-      name, population, location, _links,
+    const {
+      name, population, _links,
     } = response.data;
 
     // destructure the sub-data
@@ -181,10 +186,6 @@ export const getCitiesDetailsFromApi = async (endpoint) => {
         cityDetailsObject = {
           id: uuidv4(),
           name,
-          location: {
-            lat: location.latlon.latitude,
-            long: location.latlon.longitude,
-          },
           population,
           country: country.name,
           timeZone: timeZone.name,
@@ -199,10 +200,18 @@ export const getCitiesDetailsFromApi = async (endpoint) => {
   }
 };
 
-export const getAllCitiesLinksFromApi = async () => {
+const getAllCitiesLinksFromApi = async (searchText) => {
   try {
     const array = [];
-    const response = await axios.get(`${BASE_API}/cities/`);
+    let response;
+
+    if (searchText) {
+      response = await axios.get(`${BASE_API}/cities/?search=${searchText}`);
+      console.log(response);
+    } else {
+      response = await axios.get(`${BASE_API}/cities/`);
+    }
+    // https://api.teleport.org/api/cities/?search=Johannesburg
 
     const { _embedded } = response.data;
     const { 'city:search-results': searchResult } = _embedded;
@@ -219,16 +228,15 @@ export const getAllCitiesLinksFromApi = async () => {
   }  
 };
 
-export const initApi = async () => {
-  const { citiesLink } = await getAllCitiesLinksFromApi();
+export const initApi = async (searchText) => {
+  const { citiesLink } = await getAllCitiesLinksFromApi(searchText);
 
-  const response = citiesLink.map(async (href) => {
+  const response = citiesLink?.map(async (href) => {
     let outgoingData;
     const { data } = await getCitiesDetailsFromApi(href);
-
     if (data !== undefined) outgoingData = data;
     return outgoingData;
   });
 
-  return Promise.all(response);
+  return Promise?.all(response);
 };
