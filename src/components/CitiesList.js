@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Card from './Card';
 import initApi from '../redux/api';
 import { setCitiesAction } from '../redux/codate/codate';
@@ -15,7 +16,7 @@ const CitiesList = (prop) => {
 
     if (results.length > 0) {
       jsx = results.map((city) => (
-        city !== undefined && <div data-testid="card" className="card md:px-5"><Card key={city.id} data={city} /></div>
+        city !== undefined && <Link to={`/detail/${city.id}`} data-testid="card" className="card md:px-5"><Card key={city.id} data={city} /></Link>
       ));
     } else {
       jsx = <p className="text-center py-10">Loading...</p>;
