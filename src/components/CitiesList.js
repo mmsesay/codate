@@ -14,7 +14,7 @@ const CitiesList = (prop) => {
   const assertReduxStateAndReturnJSX = () => {
     let jsx;
 
-    if (results.length > 0) {
+    if (results?.length > 0) {
       jsx = results.map((city) => (
         city !== undefined && <Link to={`/detail/${city.id}`} key={city.id} data-testid="card" className="card md:px-5">
           <Card key={city.id} data={city} /></Link>

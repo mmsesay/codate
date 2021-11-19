@@ -13,7 +13,7 @@ const testData = {
 };
 
 describe('Testing Card component', () => {
-  test('renders a message', () => {
+  test('renders a correct data', () => {
     const { getByTestId } = render(<Card data={testData} />);
     expect(getByTestId('city-image')).toBeInTheDocument();
     expect(getByTestId('city-name')).toBeInTheDocument();

@@ -1,5 +1,6 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { getCurrentState, mockData } from '../utils/mockedFunction';
 import CityDetails from '../components/CityDetails';
@@ -14,6 +15,11 @@ describe('Testing single city detail', () => {
         expect(object.name).toEqual('Freetown');
       }
     });
+  });
+
+  test('renders correct element', () => {
+    const { getByTestId } = render(<Router><CityDetails data={mockData} /></Router>);
+    expect(getByTestId('city-details-container')).toBeInTheDocument();
   });
 
   test('should match with snapshot', () => {
