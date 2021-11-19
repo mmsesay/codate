@@ -14,13 +14,13 @@ export const Card = (prop) => {
           </span>
           <div className="w-full h-28 md:h-72">
             <img 
-              src={moreInfo.cityImageURL}
+              src={moreInfo?.cityImageURL}
               alt="city preview image"
               className="w-full h-full rounded-md" />
           </div>
           <div className="text-right text-white md:mt-4">
-            <p className="font-bold md:text-3xl">{name.toUpperCase()}</p>
-            <p className="text-sm md:text-xl">Population: {population.toLocaleString()}</p>
+            <p className="font-bold md:text-3xl">{name?.toUpperCase()}</p>
+            <p className="text-sm md:text-xl">Population: {population?.toLocaleString()}</p>
           </div>
         </div>
       </Link>
