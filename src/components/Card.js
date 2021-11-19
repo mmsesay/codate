@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export const Card = (prop) => {
+const Card = (prop) => {
   const {
     id, name, population, moreInfo,
   } = prop.data;
@@ -13,7 +13,7 @@ export const Card = (prop) => {
             <i className="far fa-arrow-alt-circle-right fa-lg text-white"></i>
           </span>
           <div className="w-full h-28 md:h-72">
-            <img 
+            <img
               src={moreInfo?.cityImageURL}
               alt="city preview image"
               className="w-full h-full rounded-md" />
@@ -27,3 +27,5 @@ export const Card = (prop) => {
     </>
   );
 };
+
+export default Card;

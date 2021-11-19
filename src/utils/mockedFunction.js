@@ -31,7 +31,7 @@ const mockData = [
   },
 ];
 
-export const setData = (paylaod) => { 
+export const setData = (paylaod) => {
   mockData.push(paylaod);
 };
 

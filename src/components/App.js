@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { CitiesList } from './CitiesList';
-import { CityDetails } from './CityDetails';
-import { initApi } from '../redux/api';
+import CitiesList from './CitiesList';
+import CityDetails from './CityDetails';
+import initApi from '../redux/api';
 import { setCitiesAction } from '../redux/codate/codate';
 import Head from './Head';
 

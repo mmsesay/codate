@@ -13,16 +13,16 @@ const getUrbanDetailsFromApi = async (endpoint) => {
     responseThree.data.photos.forEach((object) => { cityImageURL = object.image.mobile; });
 
     const moreDetails = responseTwo.data.categories;
-    let business,
-      climate,
-      costOfLiving,
-      economy,
-      education, 
-      healthCare,
-      housing,
-      jobMarket,
-      network,
-      safety;
+    let business;
+    let climate;
+    let costOfLiving;
+    let economy;
+    let education;
+    let healthCare;
+    let housing;
+    let jobMarket;
+    let network;
+    let safety;
 
     moreDetails.forEach((obj) => {
       switch (obj.id) {
@@ -30,7 +30,7 @@ const getUrbanDetailsFromApi = async (endpoint) => {
           const businessFreedom = obj.data[0];
           const corruptionFreedom = obj.data[2];
           const labourRestriction = obj.data[4];
-    
+
           business = {
             businessFreedom,
             corruptionFreedom,
@@ -38,61 +38,61 @@ const getUrbanDetailsFromApi = async (endpoint) => {
           };
           break;
         }
-    
+
         case 'CLIMATE': {
           const weather = obj.data[4];
-    
+
           climate = {
             weather,
           };
           break;
         }
-    
+
         case 'COST-OF-LIVING': {
           const publicTransport = obj.data[7];
           const restaurantMeal = obj.data[8];
-    
+
           costOfLiving = {
             publicTransport,
             restaurantMeal,
           };
           break;
         }
-    
+
         case 'ECONOMY': {
           const gdpGrowthRate = obj.data[2];
-    
+
           economy = {
             gdpGrowthRate,
           };
           break;
         }
-    
+
         case 'EDUCATION': {
           const bestUniversity = obj.data[16];
-    
+
           education = {
             bestUniversity,
           };
           break;
         }
-    
+
         case 'HEALTHCARE': {
           const healthCost = obj.data[0];
           const lifeExpentancy = obj.data[1];
-    
+
           healthCare = {
             healthCost,
             lifeExpentancy,
           };
           break;
         }
-    
+
         case 'HOUSING': {
           const largeApartment = obj.data[0];
           const mediumApartment = obj.data[1];
           const smallApartment = obj.data[2];
-    
+
           housing = {
             largeApartment,
             mediumApartment,
@@ -100,38 +100,38 @@ const getUrbanDetailsFromApi = async (endpoint) => {
           };
           break;
         }
-    
+
         case 'JOB-MARKET': {
           const startupAvailable = obj.data[1];
-    
+
           jobMarket = {
             startupAvailable,
           };
           break;
         }
-    
+
         case 'NETWORK': {
           const downloadSpeed = obj.data[0];
           const uploadSpeed = obj.data[2];
-    
+
           network = {
             downloadSpeed,
             uploadSpeed,
           };
           break;
         }
-    
+
         case 'SAFETY': {
           const crimeRate = obj.data[0];
           const gunDeathRate = obj.data[1];
-    
+
           safety = {
             crimeRate,
             gunDeathRate,
           };
           break;
         }
-      
+
         default:
           break;
       }
@@ -157,7 +157,7 @@ const getUrbanDetailsFromApi = async (endpoint) => {
     return { data: newObj, error: null };
   } catch (error) {
     return { data: null, error: 'Error fetching data' };
-  }  
+  }
 };
 
 const getCitiesDetailsFromApi = async (endpoint) => {
@@ -223,10 +223,10 @@ const getAllCitiesLinksFromApi = async (searchText) => {
     return { citiesLink: array, error: null };
   } catch (error) {
     return { cities: null, error: 'Error fetching data' };
-  }  
+  }
 };
 
-export const initApi = async (searchText) => {
+const initApi = async (searchText) => {
   const { citiesLink } = await getAllCitiesLinksFromApi(searchText);
 
   const response = citiesLink?.map(async (href) => {
@@ -238,3 +238,5 @@ export const initApi = async (searchText) => {
 
   return Promise?.all(response);
 };
+
+export default initApi;

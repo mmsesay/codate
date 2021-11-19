@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import worldMap from '../assets/worldmap.png';
 
-export const CityDetails = (prop) => {
+const CityDetails = (prop) => {
   const cityData = prop.results;
 
   const { id } = useParams();
@@ -167,3 +167,5 @@ export const CityDetails = (prop) => {
     </div>
   );
 };
+
+export default CityDetails;

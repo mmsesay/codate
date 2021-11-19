@@ -12,7 +12,7 @@ export const setCitiesAction = (payload) => ({
 });
 
 // reducer
-export const codateReducer = (state = initialState, action) => {
+export const codateReducer = (state = initialState, action = undefined) => {
   switch (action.type) {
     case SET_CITIES:
       return {

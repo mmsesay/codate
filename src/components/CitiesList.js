@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Card } from './Card';
-import { initApi } from '../redux/api';
+import Card from './Card';
+import initApi from '../redux/api';
 import { setCitiesAction } from '../redux/codate/codate';
 import worldMap from '../assets/worldmap.png';
 
-export const CitiesList = (prop) => {
+const CitiesList = (prop) => {
   const { results } = prop;
   const dispatch = useDispatch();
   const [searchText, setSearchText] = useState('');
@@ -44,8 +44,8 @@ export const CitiesList = (prop) => {
         </div>
       </div>
       <div className="w-full">
-        <input 
-          type="text" 
+        <input
+          type="text"
           name="search"
           placeholder="Search for a city"
           onChange={(e) => handleSearch(e)}
@@ -57,3 +57,5 @@ export const CitiesList = (prop) => {
     </>
   );
 };
+
+export default CitiesList;
