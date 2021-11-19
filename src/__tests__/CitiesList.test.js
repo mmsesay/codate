@@ -1,4 +1,11 @@
-import { getCurrentState, setData } from '../utils/mockedFunction';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import renderer from 'react-test-renderer';
+import '@testing-library/jest-dom';
+
+import store from '../redux/configureStore';
+import { getCurrentState, setData, mockData } from '../utils/mockedFunction';
+import CitiesList from '../components/CitiesList';
 
 describe('Testing cities list', () => {
   test('Storing new data into the store ', () => {
@@ -19,5 +26,16 @@ describe('Testing cities list', () => {
   test('Data is present in the store ', () => {
     const { state } = getCurrentState();
     expect(state.length).toEqual(4);
+  });
+
+  test('Renders as expected', () => {
+    const tree = renderer.create(
+      <Provider store={store}>
+        <Router>
+          {mockData.map((data) => <CitiesList key={data.id} results={mockData} />)}
+        </Router>
+      </Provider>,
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
   });
 });
