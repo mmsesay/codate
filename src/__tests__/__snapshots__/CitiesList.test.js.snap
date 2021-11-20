@@ -1,0 +1,222 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing cities list Renders as expected 1`] = `
+Array [
+  <div
+    className="flex h-40 md:h-72 items-center justify-between px-4 md:px-20 text-white base"
+  >
+    <img
+      alt="world-map"
+      className="w-1/2 md:w-96 h-32 md:h-64 -ml-3 object-contain"
+      src="worldmap.png"
+    />
+    <div
+      className="w-1/2 flex flex-col items-end justify-end "
+    >
+      <h1
+        className="text-xl md:text-5xl font-bold"
+        data-testid="card"
+      >
+        Popular Citites
+      </h1>
+      <p
+        className="text-lg md:text-2xl"
+      >
+        4 cities
+      </p>
+    </div>
+  </div>,
+  <div
+    className="w-full"
+  >
+    <input
+      className="focus:outline-none px-5 w-full h-12 md:h-20 md:px-10 md:text-xl dark-primary"
+      name="search"
+      onChange={[Function]}
+      placeholder="Search for a city"
+      type="text"
+    />
+  </div>,
+  <div
+    className="grid grid-cols-2 md:grid-cols-3 darker-primary"
+    data-testid="cities-container"
+  >
+    <a
+      className="card md:px-5"
+      data-testid="card"
+      href="/detail/1"
+      onClick={[Function]}
+    >
+      <div
+        className="text-lg p-3 h-52 md:h-auto md:my-6 flex flex-col items-end justify-between"
+      >
+        <span
+          className="p-1 text-sm md:text-2xl md:mb-3"
+        >
+          <i
+            className="far fa-arrow-alt-circle-right fa-lg text-white"
+          />
+        </span>
+        <div
+          className="w-full h-28 md:h-72"
+        >
+          <img
+            alt="city preview image"
+            className="w-full h-full rounded-md"
+            data-testid="city-image"
+          />
+        </div>
+        <div
+          className="text-right text-white md:mt-4"
+        >
+          <p
+            className="font-bold md:text-3xl"
+            data-testid="city-name"
+          >
+            FREETOWN
+          </p>
+          <p
+            className="text-sm md:text-xl"
+            data-testid="city-population"
+          >
+            Population: 
+            7,000,000
+          </p>
+        </div>
+      </div>
+    </a>
+    <a
+      className="card md:px-5"
+      data-testid="card"
+      href="/detail/2"
+      onClick={[Function]}
+    >
+      <div
+        className="text-lg p-3 h-52 md:h-auto md:my-6 flex flex-col items-end justify-between"
+      >
+        <span
+          className="p-1 text-sm md:text-2xl md:mb-3"
+        >
+          <i
+            className="far fa-arrow-alt-circle-right fa-lg text-white"
+          />
+        </span>
+        <div
+          className="w-full h-28 md:h-72"
+        >
+          <img
+            alt="city preview image"
+            className="w-full h-full rounded-md"
+            data-testid="city-image"
+          />
+        </div>
+        <div
+          className="text-right text-white md:mt-4"
+        >
+          <p
+            className="font-bold md:text-3xl"
+            data-testid="city-name"
+          >
+            ACCRA
+          </p>
+          <p
+            className="text-sm md:text-xl"
+            data-testid="city-population"
+          >
+            Population: 
+            8,000,000
+          </p>
+        </div>
+      </div>
+    </a>
+    <a
+      className="card md:px-5"
+      data-testid="card"
+      href="/detail/3"
+      onClick={[Function]}
+    >
+      <div
+        className="text-lg p-3 h-52 md:h-auto md:my-6 flex flex-col items-end justify-between"
+      >
+        <span
+          className="p-1 text-sm md:text-2xl md:mb-3"
+        >
+          <i
+            className="far fa-arrow-alt-circle-right fa-lg text-white"
+          />
+        </span>
+        <div
+          className="w-full h-28 md:h-72"
+        >
+          <img
+            alt="city preview image"
+            className="w-full h-full rounded-md"
+            data-testid="city-image"
+          />
+        </div>
+        <div
+          className="text-right text-white md:mt-4"
+        >
+          <p
+            className="font-bold md:text-3xl"
+            data-testid="city-name"
+          >
+            LAGOS
+          </p>
+          <p
+            className="text-sm md:text-xl"
+            data-testid="city-population"
+          >
+            Population: 
+            9,000,000
+          </p>
+        </div>
+      </div>
+    </a>
+    <a
+      className="card md:px-5"
+      data-testid="card"
+      href="/detail/4"
+      onClick={[Function]}
+    >
+      <div
+        className="text-lg p-3 h-52 md:h-auto md:my-6 flex flex-col items-end justify-between"
+      >
+        <span
+          className="p-1 text-sm md:text-2xl md:mb-3"
+        >
+          <i
+            className="far fa-arrow-alt-circle-right fa-lg text-white"
+          />
+        </span>
+        <div
+          className="w-full h-28 md:h-72"
+        >
+          <img
+            alt="city preview image"
+            className="w-full h-full rounded-md"
+            data-testid="city-image"
+          />
+        </div>
+        <div
+          className="text-right text-white md:mt-4"
+        >
+          <p
+            className="font-bold md:text-3xl"
+            data-testid="city-name"
+          >
+            CAIRO
+          </p>
+          <p
+            className="text-sm md:text-xl"
+            data-testid="city-population"
+          >
+            Population: 
+            12,000,000
+          </p>
+        </div>
+      </div>
+    </a>
+  </div>,
+]
+`;
